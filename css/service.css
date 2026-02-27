@@ -241,6 +241,24 @@ body {
     line-height: 1.6;
 }
 
+/* 텍스트 강조 유틸리티 */
+.txt-hl {
+    background: linear-gradient(transparent 60%, #fff3cd 60%);
+    padding: 0 2px;
+    font-weight: 600;
+    color: var(--hub-text);
+}
+.txt-b {
+    font-weight: 700;
+    color: var(--hub-text);
+}
+.txt-ul {
+    text-decoration: underline;
+    text-decoration-color: var(--hub-accent);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+}
+
 /* SEO 섹션 */
 .seo-section {
     margin-top: 40px;
