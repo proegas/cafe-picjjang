@@ -320,6 +320,40 @@ body {
     z-index: 1000;
 }
 
+/* 추천 서비스 */
+.recommend-grid {
+    display: flex;
+    gap: 12px;
+}
+.recommend-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--hub-bg-light);
+    border: 1px solid var(--hub-border);
+    border-radius: var(--hub-radius);
+    text-decoration: none;
+    transition: border-color 0.2s;
+}
+.recommend-card:hover {
+    border-color: var(--hub-accent);
+}
+.recommend-emoji {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+.recommend-info strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--hub-text);
+}
+.recommend-info span {
+    font-size: 0.78rem;
+    color: var(--hub-text-light);
+}
+
 /* about 페이지 */
 .about-feature {
     padding: 16px 0;
