@@ -6,5 +6,6 @@ var SERVICE_CONFIG = {
     id: 'coffeeshop',
     name: '커피숍 창업 계산기',
     domain: 'cafe.picjjang.com',
-    themeColor: '#5C3D2E'
+    themeColor: '#5C3D2E',
+    crosslinkCombo: '01_st'
 };

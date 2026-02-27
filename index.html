@@ -275,26 +275,8 @@
             </div>
         </div>
 
-        <!-- 추천 서비스 -->
-        <div class="seo-section">
-            <h2 class="hub-section-title">다른 서비스도 써보세요</h2>
-            <div class="recommend-grid">
-                <a href="https://psa.picjjang.com" class="recommend-card" target="_blank" rel="noopener">
-                    <span class="recommend-emoji">📸</span>
-                    <span class="recommend-info">
-                        <strong>AI 프사 추천</strong>
-                        <span>AI가 골라주는 나만의 프로필 사진</span>
-                    </span>
-                </a>
-                <a href="https://saju.picjjang.com" class="recommend-card" target="_blank" rel="noopener">
-                    <span class="recommend-emoji">🔮</span>
-                    <span class="recommend-info">
-                        <strong>운세 · 사주</strong>
-                        <span>오늘의 운세와 사주풀이</span>
-                    </span>
-                </a>
-            </div>
-        </div>
+        <!-- 추천 서비스 (hub 모듈 자동 렌더링) -->
+        <div id="hub-crosslink-widget"></div>
 
         <!-- 안내 -->
         <div class="info-box">
@@ -321,6 +303,8 @@
 
     <!-- 스크립트 -->
     <script src="config.js"></script>
+    <script src="https://picjjang.com/_shared/js/hub-config.js"></script>
+    <script src="https://picjjang.com/_shared/js/hub-crosslink.js"></script>
     <script src="js/service.js"></script>
 
     <!-- 드롭다운 닫기 -->
