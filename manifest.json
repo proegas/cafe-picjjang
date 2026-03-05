@@ -1,0 +1,22 @@
+{
+    "name": "카페 창업 계산기",
+    "short_name": "카페계산기",
+    "description": "카페 창업 비용 시뮬레이터",
+    "start_url": "\/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#6f4e37",
+    "lang": "ko",
+    "icons": [
+        {
+            "src": "\/img\/favicon-192.png",
+            "sizes": "192x192",
+            "type": "image\/png"
+        },
+        {
+            "src": "\/img\/favicon-512.png",
+            "sizes": "512x512",
+            "type": "image\/png"
+        }
+    ]
+}

@@ -1,2 +1,5 @@
 img/generate_og.php
 .DS_Store
+
+# Local Netlify folder
+.netlify
