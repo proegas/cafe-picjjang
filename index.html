@@ -54,17 +54,88 @@
     <!-- 서비스 스타일 -->
     <link rel="stylesheet" href="css/service.css" />
 
+    <!-- 허브 -->
+    <meta name="hub-source" content="coffeeshop">
+    <script src="https://picjjang.com/_shared/js/hub-tracker.js" defer></script>
+
     <!-- 파비콘 + PWA -->
     <meta name="theme-color" content="#6f4e37">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="카페계산기">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
 </head>
 
 <body x-data="cafeCalc()">
+
+    <!-- 프로모 슬라이드 배너 -->
+    <style>
+    .promo-banner-wrap { padding: 8px 8px 0; position: sticky; top: 0; z-index: 100; }
+    .promo-banner { position: relative; height: 3.5rem; background: #1f2937; color: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .promo-slide { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateX(30%) scale(0.95); pointer-events: none; transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .promo-link { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; text-decoration: none; color: inherit; }
+    .promo-link:hover { background: rgba(55,65,81,0.5); }
+    .promo-main { font-size: 13px; font-weight: 600; }
+    .promo-sub { font-size: 9.5px; color: #9ca3af; margin-top: 1px; }
+    @media (min-width: 768px) { .promo-link { flex-direction: row; gap: 8px; } .promo-sub { font-size: 12px; margin-top: 0; } }
+    .promo-dots { position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; }
+    .promo-dot { width: 5px; height: 5px; border-radius: 50%; background: #6b7280; transition: all 0.3s; }
+    .promo-dot.active { background: #facc15; }
+    .promo-close { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #9ca3af; font-size: 18px; cursor: pointer; line-height: 1; }
+    .promo-close:hover { color: #fff; }
+    </style>
+
+    <div class="promo-banner-wrap" id="promoBannerWrap">
+        <div class="promo-banner" id="promoBanner">
+            <div class="promo-slide" style="opacity:1;transform:translateX(0);pointer-events:auto;">
+                <a class="promo-link" href="https://saju4.picjjang.com/?utm_source=coffeeshop" target="_blank">
+                    <span class="promo-main" style="color:#a78bfa">&#x1F52E; 내 사주, 무료로 확인</span>
+                    <span class="promo-sub">사주팔자 오행 분석 &#10095;</span>
+                </a>
+            </div>
+            <div class="promo-slide">
+                <a class="promo-link" href="https://gunghap.picjjang.com/?utm_source=coffeeshop" target="_blank">
+                    <span class="promo-main" style="color:#e8758f">&#x1F495; 우리 궁합, 얼마나 맞을까?</span>
+                    <span class="promo-sub">무료 사주 궁합 분석 &#10095;</span>
+                </a>
+            </div>
+            <div class="promo-slide">
+                <a class="promo-link" href="https://face.picjjang.com/?utm_source=coffeeshop" target="_blank">
+                    <span class="promo-main" style="color:#e8758f">&#x1F48E; AI가 분석하는 내 매력</span>
+                    <span class="promo-sub">AI 외모 평가 테스트 &#10095;</span>
+                </a>
+            </div>
+            <div class="promo-slide">
+                <a class="promo-link" href="https://moye.picjjang.com/?utm_source=coffeeshop" target="_blank">
+                    <span class="promo-main" style="color:#facc15">&#x1F3AF; 내일 코스피, 어디로?</span>
+                    <span class="promo-sub">한 표로 예측 참여하기 &#10095;</span>
+                </a>
+            </div>
+            <div class="promo-slide">
+                <a class="promo-link" href="https://lucky.picjjang.com/?utm_source=coffeeshop" target="_blank">
+                    <span class="promo-main" style="color:#34d399">&#x1F340; 어젯밤 꿈, 로또 번호로?</span>
+                    <span class="promo-sub">꿈해몽으로 번호 추천받기 &#10095;</span>
+                </a>
+            </div>
+            <div class="promo-slide">
+                <a class="promo-link" href="https://yagan.picjjang.com/?utm_source=coffeeshop" target="_blank">
+                    <span class="promo-main" style="color:#facc15">&#x1F319; 밤사이 코스피가 움직입니다</span>
+                    <span class="promo-sub">야간선물 실시간 시세 확인 &#10095;</span>
+                </a>
+            </div>
+            <div class="promo-dots">
+                <span class="promo-dot active"></span>
+                <span class="promo-dot"></span>
+                <span class="promo-dot"></span>
+                <span class="promo-dot"></span>
+                <span class="promo-dot"></span>
+                <span class="promo-dot"></span>
+            </div>
+            <button class="promo-close" onclick="document.getElementById('promoBannerWrap').style.display='none'">&times;</button>
+        </div>
+    </div>
 
     <!-- 네비바 -->
     <nav class="site-nav">
@@ -338,6 +409,68 @@
             "name": "커피숍 창업 계산기"
         }
     }
+    </script>
+
+    <!-- 체류장치 바텀시트 -->
+    <style>
+    .game-fab { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: #e8758f; color: #fff; border: none; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 16px rgba(232,117,143,0.4); z-index: 999; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; -webkit-tap-highlight-color: transparent; }
+    .game-fab:hover { transform: scale(1.1); }
+    .game-fab:active { transform: scale(0.95); }
+    @keyframes fab-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes fab-glow { 0%, 100% { box-shadow: 0 4px 16px rgba(232,117,143,0.4); } 50% { box-shadow: 0 4px 24px rgba(232,117,143,0.7), 0 0 12px rgba(232,117,143,0.3); } }
+    .game-fab { animation: fab-bounce 2s ease-in-out infinite, fab-glow 2s ease-in-out infinite; }
+    .game-fab:hover { animation: none; }
+    .game-fab .fab-badge { position: absolute; top: -2px; right: -2px; background: #fdcb6e; color: #333; font-size: 0.55rem; font-weight: 800; padding: 2px 5px; border-radius: 8px; line-height: 1; }
+    .game-sheet-bg { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 9998; }
+    .game-sheet-bg.show { display: block; }
+    .game-sheet { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-radius: 20px 20px 0 0; z-index: 9999; height: 80vh; transform: translateY(100%); transition: transform 0.3s ease; overflow: hidden; display: flex; flex-direction: column; }
+    .game-sheet.show { transform: translateY(0); }
+    .game-sheet:not(.show) { content-visibility: hidden; }
+    .game-sheet-handle { text-align: center; padding: 10px; cursor: grab; }
+    .game-sheet-handle span { display: inline-block; width: 40px; height: 4px; background: #ddd; border-radius: 2px; }
+    .game-sheet-header { display: flex; align-items: center; justify-content: space-between; padding: 0 16px 10px; }
+    .game-sheet-header h3 { font-size: 1rem; font-weight: 700; color: #e8758f; margin: 0; }
+    .game-sheet-close { background: none; border: none; font-size: 1.5rem; color: #ccc; cursor: pointer; padding: 0; line-height: 1; }
+    .game-sheet-close:hover { color: #e8758f; }
+    .game-sheet-body { flex: 1; overflow: hidden; position: relative; }
+    @media (min-width: 768px) { .game-sheet { width: 50vw; max-width: 700px; min-width: 500px; left: auto; right: 20px; border-radius: 20px 20px 0 0; } }
+    </style>
+
+    <button class="game-fab" id="gameFab" title="잠깐 쉬어가기">
+        <span id="fabIcon">&#x1F3AE;</span>
+        <span class="fab-badge" id="fabBadge">PLAY</span>
+    </button>
+    <div class="game-sheet-bg" id="gameSheetBg" onclick="closeGameSheet()"></div>
+    <div class="game-sheet" id="gameSheet">
+        <div class="game-sheet-handle"><span></span></div>
+        <div class="game-sheet-header">
+            <h3>&#x1F3AE; 30초 쉬어가기</h3>
+            <button class="game-sheet-close" onclick="closeGameSheet()">&times;</button>
+        </div>
+        <div class="game-sheet-body" id="gameBody">
+            <iframe id="gameFrame" src="about:blank" data-src="https://picjjang.com/_shared/engagement/random/?service=coffeeshop" style="width:100%; height:100%; border:none;"></iframe>
+        </div>
+    </div>
+
+    <script>
+    var FAB_VARIANTS={A:{icon:'\uD83C\uDFAE',text:'PLAY'},B:{icon:'\uD83C\uDFAE',text:'FREE'},C:{icon:'\uD83C\uDF81',text:'PLAY'},D:{icon:'\uD83C\uDF81',text:'FREE'},E:{icon:'\uD83C\uDFB2',text:'PLAY'},F:{icon:'\uD83C\uDFB2',text:'FREE'}};
+    var FAB_KEYS=['A','B','C','D','E','F'];
+    var FAB_SERVICE='coffeeshop';
+    var FAB_API='https://picjjang.com/_shared/engagement/ab/track.php';
+    var fabVariant=localStorage.getItem('fab_variant');
+    if(!fabVariant||FAB_KEYS.indexOf(fabVariant)===-1){fabVariant=FAB_KEYS[Math.floor(Math.random()*FAB_KEYS.length)];localStorage.setItem('fab_variant',fabVariant)}
+    var fabInfo=FAB_VARIANTS[fabVariant];
+    document.getElementById('fabIcon').textContent=fabInfo.icon;
+    document.getElementById('fabBadge').textContent=fabInfo.text;
+    if(!sessionStorage.getItem('fab_imp')){sessionStorage.setItem('fab_imp','1');var fd=new FormData;fd.append('action','impression');fd.append('variant',fabVariant);fd.append('service',FAB_SERVICE);navigator.sendBeacon(FAB_API,fd)}
+    var sheetOpenTime=0,engagementTracked=false,engagementTimer=null;
+    function trackEngagement(){if(engagementTracked)return;engagementTracked=true;var p=JSON.stringify({source:FAB_SERVICE,events:[{target:'game_random',type:'engagement',action:'click',count:1}]});if(navigator.sendBeacon)navigator.sendBeacon('https://w.yoursmart.co.kr/plug/picjjang_hub/api/track.php',new Blob([p],{type:'application/json'}))}
+    function openGameSheet(){if(document.getElementById('gameSheet').classList.contains('show'))return;document.getElementById('gameSheetBg').classList.add('show');document.getElementById('gameSheet').classList.add('show');sessionStorage.setItem('game_shown','1');sessionStorage.setItem('game_auto_opened','1');var g=document.getElementById('gameFrame');if(g&&g.dataset.src)g.src=g.dataset.src;sheetOpenTime=Date.now();if(!engagementTracked&&!engagementTimer)engagementTimer=setTimeout(trackEngagement,30000)}
+    function closeGameSheet(){document.getElementById('gameSheetBg').classList.remove('show');document.getElementById('gameSheet').classList.remove('show');if(!engagementTracked&&sheetOpenTime&&Date.now()-sheetOpenTime>=30000)trackEngagement();if(engagementTimer){clearTimeout(engagementTimer);engagementTimer=null}engagementTracked=false;sheetOpenTime=0}
+    document.getElementById('gameFab').addEventListener('click',function(){openGameSheet();if(!sessionStorage.getItem('fab_click')){sessionStorage.setItem('fab_click','1');var f=new FormData;f.append('action','click');f.append('variant',fabVariant);f.append('service',FAB_SERVICE);navigator.sendBeacon(FAB_API,f)}});
+    window.addEventListener('load',function(){if(sessionStorage.getItem('game_auto_opened'))return;setTimeout(function(){if(!document.getElementById('gameSheet').classList.contains('show'))openGameSheet()},15000)});
+    // 슬라이드 배너
+    (function(){var b=document.getElementById('promoBanner');if(!b)return;var s=b.querySelectorAll('.promo-slide'),d=b.querySelectorAll('.promo-dot'),c=0,t=s.length;function show(i){s.forEach(function(sl,j){if(j===i){sl.style.opacity='1';sl.style.transform='translateX(0)';sl.style.pointerEvents='auto'}else if(j===c&&j!==i){sl.style.opacity='0';sl.style.transform='translateX(-30%) scale(0.95)';sl.style.pointerEvents='none'}else{sl.style.opacity='0';sl.style.transform='translateX(30%) scale(0.95)';sl.style.pointerEvents='none'}});d.forEach(function(dt,j){dt.classList.toggle('active',j===i)});c=i}setInterval(function(){show((c+1)%t)},4000)})();
     </script>
 
     <!-- JSON-LD: FAQPage -->
